@@ -1,0 +1,54 @@
+<div class='upload'>
+	<h2>Upload to RAWR! Box</h2>
+	<form action='/upload' method='post' enctype='multipart/form-data'>
+		<input type='file' name='file'/>
+		<br/>
+		Label Reference: <input type='text' name='label'/>
+		<br/>
+		<input type='submit' name='submit' value='Upload'/>
+	</form>
+</div>
+<div class='phrase'>
+	<h2>Increase RAWR! Box's Vocabulary</h2>
+	<form action='/learn' method='post'>
+		Teach Rawr-box to say: <input type='text' name='phrase'/>
+		<select name='voice'>
+			<option value='default'>Default Voice</option>
+			<%= %w{Agnes Cathy Princess Vicki Victoria Bruce Fred Junior Ralph Albert Bad_News Bahh Bells Boing Bubbles Cellos Deranged Good_News Hysterical Pipe_Organ Trinoids Whisper Zarvox}.map {|v| "<option value='#{v.gsub(/_/,' ')}'>#{v.gsub(/_/,' ')}</option>" }.join %>
+		</select>
+		<br/>
+		Label Reference: <input type='text' name='label'/>
+		<br/>
+		<input type='submit' name='submit' value='Repeat after me'/>
+	</form>
+</div>
+<div class='play'>
+	<h2>Have RAWR! Box Play</h2>
+	<ul class='sounds'>
+		<% Sound.all.each do |s| %>
+			<li>
+				<h3><%= s.label %></h3>
+				<span><%= s.filename %></span>
+				<%= link_to_remote('Play', :url => "/application/play/#{s.id}", :html => {:class => 'float-right'}) %>
+				<%= link_to_remote('Delete', :url => "/application/delete/#{s.id}", :html => {:class => 'float-right'}) %> 
+			</li>
+		<% end %>
+	</ul>
+</div>
+<div class='play'>
+  <h2>Have RAWR! Box say</h2>
+  <ul class='sounds'>
+    <% Phrase.all.each do |s| %>
+      <li>
+        <h3><%= s.label %></h3>
+        <span><%= s.voice %>: <%= s.phrase %></span>
+				<div style='padding-top: 5px'>
+        	<%= link_to_remote('Play', :url => "/application/say/#{s.id}", :html => {:class => 'float-right'}) %>
+        	<%= link_to_remote('Delete', :url => "/application/forget/#{s.id}", :html => {:class => 'float-right'}) %>
+					<div style='clear: both'></div>
+				</div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<div style='clear: both'></div>

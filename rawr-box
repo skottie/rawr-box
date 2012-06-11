@@ -1,0 +1,10 @@
+echo 'Starting background daemon...'
+script/delayed_job stop > /dev/null
+script/delayed_job start 
+
+echo 'Starting rails...'
+sudo script/server -p 80;
+
+echo 'cleaning up...'
+script/delayed_job stop;
+echo 'done.'
