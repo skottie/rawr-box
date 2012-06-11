@@ -46,6 +46,7 @@ class ApplicationController < ActionController::Base
 	def upload
 		full_path = "#{Dir.pwd}/uploads/#{params[:file].original_filename}" 
 		`cp #{params[:file].path} #{full_path}` 
+		`chmod 777 #{full_path}` # file is owned by root because we are running on port 80.	
 		Sound.create({
 			:path => full_path,
 			:label => params[:label],

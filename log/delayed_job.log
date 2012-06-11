@@ -1,5 +1,0 @@
-# Logfile created on Mon Jun 11 13:20:01 -0500 2012 by logger.rb/22285
-2012-06-11T13:20:01-0500: [Worker(delayed_job host:scary.spice.spiceworks.com pid:43787)] Starting job worker
-2012-06-11T13:20:26-0500: [Worker(delayed_job host:scary.spice.spiceworks.com pid:43787)] acquired lock on Phrase#play
-2012-06-11T13:20:28-0500: [Worker(delayed_job host:scary.spice.spiceworks.com pid:43787)] Phrase#play completed after 1.9265
-2012-06-11T13:20:28-0500: [Worker(delayed_job host:scary.spice.spiceworks.com pid:43787)] 1 jobs processed at 0.5167 j/s, 0 failed ...

@@ -1001,3 +1001,120 @@ Migrating to AddDelayedJobs (20120608194041)
   [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("delayed_jobs")[0m
   [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("phrases")[0m
   [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("sounds")[0m
+  [4;36;1mSound Load (0.6ms)[0m   [0;1mSELECT * FROM "sounds" ORDER BY sounds.id DESC LIMIT 1[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "sounds" [0m
+  [4;36;1mSound Load (0.2ms)[0m   [0;1mSELECT * FROM "sounds" WHERE ("sounds"."id" = 2) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "sounds" [0m
+
+
+Processing ApplicationController#index (for 192.168.170.185 at 2012-06-11 15:30:04) [GET]
+Rendering template within layouts/application
+Rendering application/index
+  [4;36;1mSound Load (0.7ms)[0m   [0;1mSELECT * FROM "sounds" [0m
+  [4;35;1mPhrase Load (0.3ms)[0m   [0mSELECT * FROM "phrases" [0m
+Completed in 39ms (View: 36, DB: 1) | 200 OK [http://scary/]
+
+
+Processing ApplicationController#upload (for 192.168.170.185 at 2012-06-11 15:30:12) [POST]
+  Parameters: {"label"=>"crap", "submit"=>"Upload", "file"=>#<File:/tmp/RackMultipart20120611-44851-1nzhjfh-0>}
+  [4;36;1mSound Create (0.5ms)[0m   [0;1mINSERT INTO "sounds" ("label", "created_at", "updated_at", "path", "filename") VALUES('crap', '2012-06-11 20:30:12', '2012-06-11 20:30:12', '/Users/User/team/rawr-box/uploads/aw_crap.wav', 'aw_crap.wav')[0m
+Redirected to http://scary/
+Completed in 24ms (DB: 1) | 302 Found [http://scary/upload]
+
+
+Processing ApplicationController#index (for 192.168.170.185 at 2012-06-11 15:30:12) [GET]
+Rendering template within layouts/application
+Rendering application/index
+  [4;35;1mSound Load (0.5ms)[0m   [0mSELECT * FROM "sounds" [0m
+  [4;36;1mPhrase Load (0.3ms)[0m   [0;1mSELECT * FROM "phrases" [0m
+Completed in 20ms (View: 17, DB: 1) | 200 OK [http://scary/]
+
+
+Processing ApplicationController#play (for 192.168.170.185 at 2012-06-11 15:30:29) [POST]
+  Parameters: {"id"=>"2"}
+  [4;35;1mSound Load (0.2ms)[0m   [0mSELECT * FROM "sounds" WHERE ("sounds"."id" = '2') LIMIT 1[0m
+  [4;36;1mDelayed::Backend::ActiveRecord::Job Create (0.4ms)[0m   [0;1mINSERT INTO "delayed_jobs" ("failed_at", "locked_by", "created_at", "handler", "updated_at", "priority", "run_at", "attempts", "locked_at", "last_error") VALUES(NULL, NULL, '2012-06-11 20:30:29', '--- !ruby/struct:Delayed::PerformableMethod 
+object: LOAD;Sound;2
+method: :play
+args: []
+
+', '2012-06-11 20:30:29', 0, '2012-06-11 20:30:29', 0, NULL, NULL)[0m
+Completed in 57ms (View: 1, DB: 1) | 200 OK [http://scary/application/play/2]
+
+
+Processing ApplicationController#play (for 192.168.170.185 at 2012-06-11 15:30:29) [POST]
+  Parameters: {"id"=>"2"}
+  [4;35;1mSound Load (0.2ms)[0m   [0mSELECT * FROM "sounds" WHERE ("sounds"."id" = '2') LIMIT 1[0m
+  [4;36;1mDelayed::Backend::ActiveRecord::Job Create (0.3ms)[0m   [0;1mINSERT INTO "delayed_jobs" ("failed_at", "locked_by", "created_at", "handler", "updated_at", "priority", "run_at", "attempts", "locked_at", "last_error") VALUES(NULL, NULL, '2012-06-11 20:30:29', '--- !ruby/struct:Delayed::PerformableMethod 
+object: LOAD;Sound;2
+method: :play
+args: []
+
+', '2012-06-11 20:30:29', 0, '2012-06-11 20:30:29', 0, NULL, NULL)[0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://scary/application/play/2]
+
+
+Processing ApplicationController#delete (for 192.168.170.185 at 2012-06-11 15:30:30) [POST]
+  Parameters: {"id"=>"2"}
+  [4;35;1mSound Load (0.2ms)[0m   [0mSELECT * FROM "sounds" WHERE ("sounds"."id" = '2') LIMIT 1[0m
+  [4;36;1mSound Destroy (0.6ms)[0m   [0;1mDELETE FROM "sounds" WHERE "id" = 2[0m
+Completed in 20ms (View: 1, DB: 1) | 200 OK [http://scary/application/delete/2]
+
+
+Processing ApplicationController#index (for 192.168.170.185 at 2012-06-11 15:30:30) [GET]
+Rendering template within layouts/application
+Rendering application/index
+  [4;35;1mSound Load (0.5ms)[0m   [0mSELECT * FROM "sounds" [0m
+  [4;36;1mPhrase Load (0.2ms)[0m   [0;1mSELECT * FROM "phrases" [0m
+Completed in 17ms (View: 15, DB: 1) | 200 OK [http://scary/]
+  [4;36;1mDelayed::Backend::ActiveRecord::Job Update (2.1ms)[0m   [0;1mUPDATE "delayed_jobs" SET locked_at = '2012-06-11 20:30:33', locked_by = 'delayed_job host:scary.spice.spiceworks.com pid:44850' WHERE (id = 2 and (locked_at is null or locked_at < '2012-06-11 16:30:33') and (run_at <= '2012-06-11 20:30:33')) [0m
+  [4;35;1mSound Load (0.2ms)[0m   [0mSELECT * FROM "sounds" WHERE ("sounds"."id" = 2) [0m
+  [4;36;1mDelayed::Backend::ActiveRecord::Job Destroy (0.2ms)[0m   [0;1mDELETE FROM "delayed_jobs" WHERE "id" = 2[0m
+  [4;35;1mDelayed::Backend::ActiveRecord::Job Update (1.7ms)[0m   [0mUPDATE "delayed_jobs" SET locked_at = '2012-06-11 20:30:33', locked_by = 'delayed_job host:scary.spice.spiceworks.com pid:44850' WHERE (id = 3 and (locked_at is null or locked_at < '2012-06-11 16:30:33') and (run_at <= '2012-06-11 20:30:33')) [0m
+  [4;36;1mSound Load (0.2ms)[0m   [0;1mSELECT * FROM "sounds" WHERE ("sounds"."id" = 2) [0m
+  [4;35;1mDelayed::Backend::ActiveRecord::Job Destroy (0.2ms)[0m   [0mDELETE FROM "delayed_jobs" WHERE "id" = 3[0m
+
+
+Processing ApplicationController#delete (for 192.168.170.185 at 2012-06-11 15:31:16) [POST]
+  Parameters: {"id"=>"1"}
+  [4;35;1mSound Load (0.2ms)[0m   [0mSELECT * FROM "sounds" WHERE ("sounds"."id" = '1') LIMIT 1[0m
+  [4;36;1mSound Destroy (1.1ms)[0m   [0;1mDELETE FROM "sounds" WHERE "id" = 1[0m
+Completed in 21ms (View: 1, DB: 1) | 200 OK [http://scary/application/delete/1]
+
+
+Processing ApplicationController#index (for 192.168.170.185 at 2012-06-11 15:31:16) [GET]
+Rendering template within layouts/application
+Rendering application/index
+  [4;35;1mSound Load (0.4ms)[0m   [0mSELECT * FROM "sounds" [0m
+  [4;36;1mPhrase Load (0.2ms)[0m   [0;1mSELECT * FROM "phrases" [0m
+Completed in 106ms (View: 104, DB: 1) | 200 OK [http://scary/]
+
+
+Processing ApplicationController#upload (for 192.168.170.185 at 2012-06-11 15:31:39) [POST]
+  Parameters: {"label"=>"thunder", "submit"=>"Upload", "file"=>#<File:/tmp/RackMultipart20120611-44851-ubuw3b-0>}
+  [4;35;1mSound Create (0.4ms)[0m   [0mINSERT INTO "sounds" ("label", "created_at", "updated_at", "path", "filename") VALUES('thunder', '2012-06-11 20:31:39', '2012-06-11 20:31:39', '/Users/User/team/rawr-box/uploads/thunderclap.wav', 'thunderclap.wav')[0m
+Redirected to http://scary/
+Completed in 32ms (DB: 0) | 302 Found [http://scary/upload]
+
+
+Processing ApplicationController#index (for 192.168.170.185 at 2012-06-11 15:31:39) [GET]
+Rendering template within layouts/application
+Rendering application/index
+  [4;36;1mSound Load (0.5ms)[0m   [0;1mSELECT * FROM "sounds" [0m
+  [4;35;1mPhrase Load (0.2ms)[0m   [0mSELECT * FROM "phrases" [0m
+Completed in 18ms (View: 16, DB: 1) | 200 OK [http://scary/]
+
+
+Processing ApplicationController#play (for 192.168.170.185 at 2012-06-11 15:31:41) [POST]
+  Parameters: {"id"=>"3"}
+  [4;36;1mSound Load (0.2ms)[0m   [0;1mSELECT * FROM "sounds" WHERE ("sounds"."id" = '3') LIMIT 1[0m
+  [4;35;1mDelayed::Backend::ActiveRecord::Job Create (0.3ms)[0m   [0mINSERT INTO "delayed_jobs" ("failed_at", "locked_by", "created_at", "handler", "updated_at", "priority", "run_at", "attempts", "locked_at", "last_error") VALUES(NULL, NULL, '2012-06-11 20:31:41', '--- !ruby/struct:Delayed::PerformableMethod 
+object: LOAD;Sound;3
+method: :play
+args: []
+
+', '2012-06-11 20:31:41', 0, '2012-06-11 20:31:41', 0, NULL, NULL)[0m
+Completed in 11ms (View: 1, DB: 1) | 200 OK [http://scary/application/play/3]
+  [4;36;1mDelayed::Backend::ActiveRecord::Job Update (1.6ms)[0m   [0;1mUPDATE "delayed_jobs" SET locked_at = '2012-06-11 20:31:43', locked_by = 'delayed_job host:scary.spice.spiceworks.com pid:44850' WHERE (id = 4 and (locked_at is null or locked_at < '2012-06-11 16:31:43') and (run_at <= '2012-06-11 20:31:43')) [0m
+  [4;35;1mSound Load (0.2ms)[0m   [0mSELECT * FROM "sounds" WHERE ("sounds"."id" = 3) [0m
+  [4;36;1mDelayed::Backend::ActiveRecord::Job Destroy (0.4ms)[0m   [0;1mDELETE FROM "delayed_jobs" WHERE "id" = 4[0m
