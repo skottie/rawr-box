@@ -9,6 +9,9 @@ ActionController::Routing::Routes.draw do |map|
 	map.connect '/play/:id', :controller => 'application', :action => 'play'
 	map.connect '/say/:id', :controller => 'application', :action => 'say'
 	map.connect '/commit/:id', :controller => 'application', :action => 'commit'
+
+	# VOICE COMMANDS
+	map.connect '/progress', :controller => 'application', :action => 'progress'
 	
 	# defaults
 	map.connect ':controller/:action/:id'

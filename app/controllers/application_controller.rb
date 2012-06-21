@@ -104,6 +104,15 @@ class ApplicationController < ActionController::Base
 		render :nothing => true
 	end
 
+	def progress 
+		ApplicationController.delay.play_progress
+	end
+
+	def self.play_progress
+		commit_count = Commit.today.count
+		`say "There has been #{commit_count} commits today."` 
+	end
+
 	def self.play_commit_sound(path)
 		`afplay #{path}`
 	end
