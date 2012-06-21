@@ -8,6 +8,7 @@ ActionController::Routing::Routes.draw do |map|
 	# play a specific sound by ID or label	
 	map.connect '/play/:id', :controller => 'application', :action => 'play'
 	map.connect '/say/:id', :controller => 'application', :action => 'say'
+	map.connect '/commit/:id', :controller => 'application', :action => 'commit'
 	
 	# defaults
 	map.connect ':controller/:action/:id'
