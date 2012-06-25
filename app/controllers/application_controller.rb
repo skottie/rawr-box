@@ -4,7 +4,7 @@
 class ApplicationController < ActionController::Base
   helper :all 
 
-	COMMIT_WAV_LEVELS = %w{headshot doublekill triplekill multikill rampage killingspree dominating untoppable megakill ultrakill ownage teamkiller}	
+	COMMIT_WAV_LEVELS = %w{headshot doublekill triplekill multikill rampage killingspree dominating unstoppable megakill ultrakill ownage teamkiller}	
 	
 	def index
 	end
@@ -90,7 +90,7 @@ class ApplicationController < ActionController::Base
 		end	
 		
 		# delay the sound playing so we don't bind on the web request
-		AsyncActions.play_sound(path)
+		AsyncActions.play_sound(path, :volume => 0.3 )
 		render :nothing => true
 	end
 
