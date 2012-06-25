@@ -9,6 +9,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 require 'delayed_job'
 
 require File.join(File.dirname(__FILE__), '../lib/scheduled_job')
+
 Dir.glob('lib/programs/*.rb').each {|t| require "#{Dir.pwd}/#{t.gsub(/.rb/,'')}"}
 
 Rails::Initializer.run do |config|

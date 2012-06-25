@@ -7,6 +7,6 @@ class Sound < ActiveRecord::Base
 	end
 
 	def play
-		system("afplay #{path}")
+		AsyncActions.play_sound(path)
 	end
 end
