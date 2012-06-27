@@ -4,6 +4,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/upload', :controller => 'application', :action => 'upload'
 	map.connect '/learn', :controller => 'application', :action => 'learn'
 
+	# Configuration interface
+	map.resources :configuration_values
+
 	# APIS
 	# play a specific sound by ID or label	
 	map.connect '/play/:id', :controller => 'application', :action => 'play'

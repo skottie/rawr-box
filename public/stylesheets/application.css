@@ -596,4 +596,22 @@ a { color: #FF8800; font-weight: bold; }
    border-bottom: 30px solid transparent;  /* left arrow slant */
    border-top: 30px solid transparent; /* right arrow slant */
    border-right: 30px solid #FFF; /* bottom, add background color here */ 
+}
+
+.config-bubble {
+	min-height: 200px;
+}
+
+.button-container { margin-top: 25px; float: right; }
+.flash.ok { 
+	border: 1px solid #008218;
+	background: #A2E8AF;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 5px;
+	font-size: 12px;
+	color: #00450D;
+	text-align: center;
+	margin-bottom: 10px;	
 } 

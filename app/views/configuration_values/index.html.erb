@@ -1,0 +1,13 @@
+<div class='config-bubble'>
+	<%= content_tag(:div, flash[:notice], :class => "flash #{flash[:notice_class]}") if flash[:notice] %>
+	<% form_tag('/configuration_values/save', :method => :post) do %>
+		<p>
+			<%= label_tag 'git_repo', 'Local Git Repo Path:' %>
+			<%= text_field_tag 'git_repo', (@configuration_values['git_repo'].value rescue '') %>
+		</p>
+		<p class='button-container'> 
+			<%= sexy_button 'Submit' %>
+		</p>
+		<%= clearfix %>
+	<% end %>
+</div>
