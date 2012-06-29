@@ -8,4 +8,12 @@ class ConfigurationValue < ActiveRecord::Base
 		end
 		c	
 	end
+
+  def self.participants
+    participants = find_by_key('participants')
+    unless participants.nil?
+      return participants.value.split(',').collect{|v| v.strip}
+    end
+    return []
+  end
 end

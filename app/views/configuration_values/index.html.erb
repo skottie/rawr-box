@@ -5,6 +5,10 @@
 			<%= label_tag 'git_repo', 'Local Git Repo Path:' %>
 			<%= text_field_tag 'git_repo', (@configuration_values['git_repo'].value rescue '') %>
 		</p>
+		<p>
+			<%= label_tag 'participants', 'Participants (CSV):' %>
+			<%= text_field_tag 'participants', (@configuration_values['participants'].value rescue '') %>
+		</p>
 		<p class='button-container'> 
 			<%= sexy_button 'Submit' %>
 		</p>
