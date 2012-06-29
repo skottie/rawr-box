@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
 
 	# posted from post-commit hook to create commit entry in server
 	def commit
-		@commit = Commit.create({:team_handle => params[:id], :changeset => params[:changeset]})
+		@commit = Commit.create({:team_handle => params[:id], :changeset => params[:changeset], :branch => params[:branch]})
 		
 		# determine the commit counts for the day
 		team_commit_count = Commit.today.count

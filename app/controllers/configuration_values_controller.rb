@@ -1,7 +1,7 @@
 class ConfigurationValuesController < ApplicationController
 	# we do this to make sure we don't serialize stray parameters into
 	# configuration values.
-	ACCEPTED_CONFIG_NAMES = %w{git_repo git_active_branch}
+	ACCEPTED_CONFIG_NAMES = %w{git_repo}
 
 	def index
 		@configuration_values = ACCEPTED_CONFIG_NAMES.each_with_object({}) { |k, memo| memo[k] = ConfigurationValue.find_by_key(k) }

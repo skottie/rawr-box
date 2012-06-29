@@ -5,10 +5,6 @@
 			<%= label_tag 'git_repo', 'Local Git Repo Path:' %>
 			<%= text_field_tag 'git_repo', (@configuration_values['git_repo'].value rescue '') %>
 		</p>
-		<p>
-			<%= label_tag 'git_active_branch', 'Git Analysis Branch:' %>
-			<%= text_field_tag 'git_active_branch', (@configuration_values['git_active_branch'].value rescue '') %>
-		</p>
 		<p class='button-container'> 
 			<%= sexy_button 'Submit' %>
 		</p>

@@ -9,13 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627220429) do
+ActiveRecord::Schema.define(:version => 20120629202733) do
 
   create_table "commits", :force => true do |t|
     t.string   "team_handle"
     t.string   "changeset"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "branch"
   end
 
   create_table "configuration_values", :force => true do |t|

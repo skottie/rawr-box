@@ -14,11 +14,14 @@ class AsyncActions
 
 	# run an async command
 	def self.command_line(cmd)
-		AsyncActions.new.send_later(:delayed_command, cmd)
+		t = Time.now
+		AsyncActions.delay.delayed_command(cmd)
+		s = Time.now
+		puts "TIME ELAPSED: #{s - t}"
 	end
 
 	# where everything actually gets piped to
-	def delayed_command(cmd)
+	def self.delayed_command(cmd)
 		puts "command: #{cmd}"
 		response = `#{cmd}`
 		puts "response: #{response}"
