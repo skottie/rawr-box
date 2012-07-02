@@ -160,9 +160,7 @@ h1.title a:hover {
   top: 1px;
   color: #E9E9E9;
   text-shadow: 0px -2 0px #80540F;
-  background: url(/images/Ruler.png) no-repeat 10px 2px;
 }
-h1.title a:active {top: 2px; background: url(/images/Ruler.png) no-repeat 10px 1px;}
 
 h1.title span.current-user {float:right; font-size: 13px; letter-spacing: 1px;}
 h1.title span.current-user span.email {margin: 0px 7px 3px 0px;}
