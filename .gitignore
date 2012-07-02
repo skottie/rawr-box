@@ -2,3 +2,5 @@ uploads/*
 *.sqlite3
 *.log
 .DS_Store
+.rbenv*
+log/**/*
