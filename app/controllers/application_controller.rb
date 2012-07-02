@@ -12,14 +12,14 @@ class ApplicationController < ActionController::Base
 	# Play a WAV file directly	
 	def play
 		@sound = Sound.find_by_id(params[:id]) || Sound.find_by_label(params[:id])
-		response = @sound.play if @sound 
+		response = @sound.delay_play if @sound 
 		render :nothing => true
 	end
 
 	# Say a pre-configured phrase
 	def say
 		@phrase = Phrase.find_by_id(params[:id]) || Phrase.find_by_label(params[:id])
-		response = @phrase.play if @phrase
+		response = @phrase.delay_play if @phrase
 		puts "Response: #{response}"
 		render :nothing => true
 	end
@@ -90,13 +90,13 @@ class ApplicationController < ActionController::Base
 		end	
 		
 		# delay the sound playing so we don't bind on the web request
-		AsyncActions.play_sound(path, :volume => 0.3 )
+		Delayed::Job.enqueue UnrealCommit.new(path)
 		render :nothing => true
 	end
 
 	# tells how many commits there were today over the PA
 	def progress 
-		AsyncActions.play_progress
+		Delayed::Job.enqueue DailyCommitCount.new
 		render :nothing => true
 	end
 end

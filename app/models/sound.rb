@@ -6,7 +6,13 @@ class Sound < ActiveRecord::Base
 		`rm #{path}`	
 	end
 
-	def play
-		AsyncActions.play_sound(path)
+	# options => {:volume => ... }
+	def delay_play(options = {})
+    self.delay.play(options)
+	end
+
+	def play(options)
+		volume = options[:volume] ? "-v #{options[:volume]}" : ""
+    `afplay #{volume} #{path}`
 	end
 end
