@@ -2,7 +2,7 @@
 # Configure your app in config/environment.rb and config/environments/*.rb
 
 # disable psych cause Rails 2.3.5 sucks
-if RUBY_VERSION > '1.8.3'
+if RUBY_VERSION == '1.9.3'
 	require 'yaml'
   YAML::ENGINE.yamler = 'syck' if (defined? YAML::ENGINE)
 end
