@@ -26,7 +26,11 @@ class Falcor
         break
       end
     end
-    unleash_the_dragon if should_play
+    #unleash_the_dragon if should_play
+    
+    ticket_status = get_ticket_status(commit)
+    play_by_status_type(ticket_status) if should_play
+
     # store last time, commits are most recent first
     ConfigurationValue.create_or_update('falcor_last_time_logged', get_time(commits.first).to_s)
   end
@@ -63,6 +67,40 @@ class Falcor
   def unleash_the_dragon
     puts "Unleashing the dragon!"
     `curl http://scary/play/Falcor`
+  end
+
+  def get_ticket_status(commit)
+    #parse <title> in each <entry> for status
+    title = commit.css('title').first.content
+  
+    if title.include? ("(Verified)")
+      "verified"
+    elsif title.include? ("(Verified Internal)")
+      "verified"
+    elsif title.include? ("(Reopened)")
+      "reopened"
+    elsif title.include? ("(New)")
+      "new"
+    else
+      "unknown"
+    end
+
+  end
+
+  def play_by_status_type(status)
+    case status
+      when "reopened"
+        puts "You didn't fix it!"
+        `curl http://scary/play/Falcor`
+      when "new"
+        puts "Unleashing the dragon!"
+        `curl http://scary/play/Falcor`
+      when "verified"
+        puts "Nice Fix!"
+        #`curl http://scary/play/Falcor`
+      else
+        puts "unknown status. nothing to play"
+      end
   end
 
 end
