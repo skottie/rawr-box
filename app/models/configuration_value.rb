@@ -9,6 +9,14 @@ class ConfigurationValue < ActiveRecord::Base
 		c	
 	end
 
+  def self.value(key)
+    c = ConfigurationValue.find_by_key(key)
+    if c.nil?
+      c = ConfigurationValue.create({:key => key, :value => nil})
+    end
+    c.value
+  end
+
   def self.participants
     participants = find_by_key('participants')
     unless participants.nil?

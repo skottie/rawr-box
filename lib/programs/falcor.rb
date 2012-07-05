@@ -33,7 +33,7 @@ class Falcor
 
   def is_recent?(commit)
     unless @last_checked
-      date = ConfigurationValue.find_by_key('falcor_last_time_logged').value || (Time.now - 60.seconds).to_s
+      date = ConfigurationValue.value('falcor_last_time_logged') || (Time.now - 60.seconds).to_s
       @last_checked = Time.parse(date)
     end
     return get_time(commit) > @last_checked

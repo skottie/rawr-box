@@ -104,6 +104,18 @@ class FalcorTest < ActiveSupport::TestCase
     assert_equal (test_date + 100.seconds).to_s, ConfigurationValue.find_by_key('falcor_last_time_logged').value
   end
 
+  test "falcor doesn't bomb on the first run" do
+    # stub the feed so we don't actually hit Redmine
+    feed = "http://example.com/feed/user/1"
+    Falcor.any_instance.stubs(:feed).returns(feed)
+    mock_redmine_feed_request(feed)
+    # stub the play method so we don't actually play the sound
+    Falcor.any_instance.stubs(:unleash_the_dragon)
+    # poll
+    falcor = Falcor.new
+    falcor.poll
+  end
+
   private
 
   def mock_commit(type = "New")
