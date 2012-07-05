@@ -1,6 +1,7 @@
 source :gemcutter
 gem "rails", "2.3.5"
 gem "sqlite3"
+gem "pg"
 
 # bundler requires these gems in all environments
 # gem "nokogiri", "1.4.2"

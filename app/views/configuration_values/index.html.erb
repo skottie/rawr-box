@@ -9,6 +9,14 @@
 			<%= label_tag 'participants', 'Participants (CSV):' %>
 			<%= text_field_tag 'participants', (@configuration_values['participants'].value rescue '') %>
 		</p>
+		<p>
+			<%= label_tag 'redmine_username', 'Redmine Username:' %>
+			<%= text_field_tag 'redmine_username', (@configuration_values['redmine_username'].value rescue '') %>
+		</p>
+		<p>
+			<%= label_tag 'redmine_password', 'Redmine Password:' %>
+			<%= password_field_tag 'redmine_password', (@configuration_values['redmine_password'].value rescue '') %>
+		</p>
 		<p class='button-container'> 
 			<%= sexy_button 'Submit' %>
 		</p>

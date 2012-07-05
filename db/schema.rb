@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629202733) do
+ActiveRecord::Schema.define(:version => 20120705211314) do
 
   create_table "commits", :force => true do |t|
     t.string   "team_handle"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(:version => 20120629202733) do
     t.string   "phrase"
     t.string   "voice"
     t.string   "label"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "redmine_tickets", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "ticket_id"
+    t.datetime "ticket_created_at"
+    t.string   "assigned_to"
+    t.string   "author_name"
+    t.string   "subject"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
