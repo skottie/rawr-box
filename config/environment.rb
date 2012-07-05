@@ -8,8 +8,6 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 require File.join(File.dirname(__FILE__), '../lib/scheduled_job')
 
-Dir.glob('lib/programs/*.rb').each {|t| require "#{Dir.pwd}/#{t.gsub(/.rb/,'')}"}
-
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -17,6 +15,8 @@ Rails::Initializer.run do |config|
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
+  # Require all the added programs
+  config.load_paths += %W( #{RAILS_ROOT}/lib/programs )
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"
@@ -42,4 +42,5 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
+  
 end

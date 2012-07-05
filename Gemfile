@@ -14,7 +14,6 @@ gem "json", "1.5.1"
 gem "nokogiri", "1.5.5"
 gem "rake", "0.9.2.2"
 gem "ruby-git", "0.2.2"
-gem "diff-lcs"
 
 group :development do
   # bundler requires these gems in development

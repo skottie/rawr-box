@@ -1,6 +1,9 @@
 # Don't change this file!
 # Configure your app in config/environment.rb and config/environments/*.rb
 
+# Need to add this because new versions of RubyGems are not compatible with 2.3.8
+require 'thread'
+
 RAILS_ROOT = "#{File.dirname(__FILE__)}/.." unless defined?(RAILS_ROOT)
 
 module Rails

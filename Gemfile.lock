@@ -47,7 +47,6 @@ DEPENDENCIES
   chronic (= 0.3.0)
   daemons (= 1.0.10)
   delayed_job (= 2.0.4)
-  diff-lcs
   fakeweb
   grit (= 2.5.0)
   i18n (= 0.6.0)
