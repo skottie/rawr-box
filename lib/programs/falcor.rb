@@ -12,6 +12,8 @@ class Falcor
 
   def perform
     poll
+		rescue Exception => e
+			`say "Falcor is grounded."`
   end
 
   def poll
@@ -22,13 +24,10 @@ class Falcor
     commits = doc.css("entry")
     commits.each do |commit|
       if is_recent?(commit) && should_alert?(commit)
-        should_play = true        
-        ticket_status = get_ticket_status(commit)
+    		play_by_status_type(get_ticket_status(commit))
         break
       end
     end
-    #unleash_the_dragon if should_play
-    play_by_status_type(ticket_status) if should_play
 
     # store last time, commits are most recent first
     ConfigurationValue.create_or_update('falcor_last_time_logged', get_time(commits.first).to_s)
@@ -72,13 +71,13 @@ class Falcor
     #parse <title> in each <entry> for status
     title = commit.css('title').first.content
   
-    if title.include? ("(Verified)")
+    if title.include?("(Verified)")
       "verified"
-    elsif title.include? ("(Verified Internal)")
+    elsif title.include?("(Verified Internal)")
       "verified"
-    elsif title.include? ("(Reopened)")
+    elsif title.include?("(Reopened)")
       "reopened"
-    elsif title.include? ("(New)")
+    elsif title.include?("(New)")
       "new"
     else
       "unknown"
