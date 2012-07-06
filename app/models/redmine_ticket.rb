@@ -2,6 +2,7 @@ class RedmineTicket < ActiveRecord::Base
 	def self.create_or_update(ticket_hash)
 		t = RedmineTicket.find_by_ticket_id(ticket_hash['id'])
 		attribute_hash = {
+			:ticket_status      => ticket_hash['ticket_status'],
 			:author_name => "#{ticket_hash['author_first']} #{ticket_hash['author_last']}",
 			:ticket_id => ticket_hash['id'],
 			:ticket_created_at => ticket_hash['created_on'],
