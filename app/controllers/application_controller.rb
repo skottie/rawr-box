@@ -99,4 +99,11 @@ class ApplicationController < ActionController::Base
 		Delayed::Job.enqueue DailyCommitCount.new
 		render :nothing => true
 	end
+	
+	# will pull the code down from github and run migrations to
+	# redeploy rawrbox from the interface.
+	def redeploy
+		Delayed::Job.enqueue Redeploy.new
+		render :nothing => true
+	end
 end
