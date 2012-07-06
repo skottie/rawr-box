@@ -12,8 +12,12 @@ ActionController::Routing::Routes.draw do |map|
 	map.connect '/play/:id', :controller => 'application', :action => 'play'
 	map.connect '/say/:id', :controller => 'application', :action => 'say'
 	map.connect '/commit/:id', :controller => 'application', :action => 'commit'
+	
 	# redeploy rawrbox from git hub and run migrations
 	map.connect '/redeploy', :controller => 'application', :action => 'redeploy'
+
+	# stop the current running afplay command if we can
+	map.connect '/shutup', :controller => 'application', :action => 'shutup'
 
 	# VOICE COMMANDS
 	map.connect '/progress', :controller => 'application', :action => 'progress'

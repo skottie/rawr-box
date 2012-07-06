@@ -1,4 +1,5 @@
 <div class='upload'>
+	<%= sexy_button_to_remote 'Shut Up', '/shutup', :class => 'red float-right' %>
 	<h2>Upload to RAWR! Box</h2>
 	<form action='/upload' method='post' enctype='multipart/form-data'>
 		<input type='file' name='file'/>

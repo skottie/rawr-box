@@ -106,4 +106,12 @@ class ApplicationController < ActionController::Base
 		Delayed::Job.enqueue Redeploy.new
 		render :nothing => true
 	end
+
+	# will kill any afplay process so we don't have to wait for
+	# mis-fired announcements to finish if we dont want
+	def shutup
+		`killall afplay`
+		AsyncSay.proclaim("I'm sorry. Please don't beat me.")
+		render :nothing => true
+	end
 end

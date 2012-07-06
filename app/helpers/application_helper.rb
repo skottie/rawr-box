@@ -9,7 +9,7 @@ module ApplicationHelper
 		content_tag(:button, content_tag(:span, label, :class => 'inner icon'), {
 			:type => :submit,
 			:class => "sexy-button #{options[:class] || ''}",
-			:onclick => "#{remote_function(:url=>url)}; return false"
+			:onclick => "#{remote_function(:url=>url)}; return false",
 		})
 	end	
 
