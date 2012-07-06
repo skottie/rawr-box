@@ -22,13 +22,12 @@ class Falcor
     commits = doc.css("entry")
     commits.each do |commit|
       if is_recent?(commit) && should_alert?(commit)
-        should_play = true
+        should_play = true        
+        ticket_status = get_ticket_status(commit)
         break
       end
     end
     #unleash_the_dragon if should_play
-    
-    ticket_status = get_ticket_status(commit)
     play_by_status_type(ticket_status) if should_play
 
     # store last time, commits are most recent first
