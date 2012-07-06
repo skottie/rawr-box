@@ -11,6 +11,9 @@ Features:
 
 * Track commits via post-commit hooks and play fun sounds over the PA depending on commit activity
 
+* Pull in Ticket information from Redmine for analysis and other fun programs
+
+* Play a sound when a ticket is opened by the teams tester for any of the participants
 
 UNREAL TOURNAMENT POST COMMIT HOOK
 ----------------------------------

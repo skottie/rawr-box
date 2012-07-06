@@ -1,4 +1,6 @@
 class RedmineTicket < ActiveRecord::Base
+	named_scope :status, lambda {|s| {:conditions => ['ticket_status = ?', s]} }
+
 	def self.create_or_update(ticket_hash)
 		t = RedmineTicket.find_by_ticket_id(ticket_hash['id'])
 		attribute_hash = {
