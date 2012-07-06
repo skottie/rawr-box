@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706134725) do
+ActiveRecord::Schema.define(:version => 20120705211314) do
 
   create_table "commits", :force => true do |t|
     t.string   "team_handle"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(:version => 20120706134725) do
     t.integer  "ticket_id"
     t.datetime "ticket_created_at"
     t.string   "assigned_to"
-    t.string   "author_name"
     t.string   "subject"
     t.string   "description"
     t.datetime "created_at"

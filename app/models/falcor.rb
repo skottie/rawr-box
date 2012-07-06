@@ -19,6 +19,7 @@ class Falcor
   def poll
     # poll Brandon's redmine feed and whenever we have a new
     # item, play the falcor sound
+    Rails.logger.info "FALCOR: fetching feed #{feed}"
     doc = Nokogiri::XML(open(feed))
     should_play = false
     commits = doc.css("entry")
@@ -35,13 +36,17 @@ class Falcor
 
   def is_recent?(commit)
     unless @last_checked
-      date = ConfigurationValue.value('falcor_last_time_logged') || (Time.now - 60.seconds).to_s
+      date = ConfigurationValue.value('falcor_last_time_logged') || (Time.now - 12.hours).to_s
       @last_checked = Time.parse(date)
     end
+    # puts 'FALCOR: found recent commit' if (get_time(commit) > @last_checked)
     return get_time(commit) > @last_checked
   end
 
   def should_alert?(commit)
+    # puts "FALCOR: title has new or reopened in it? #{(commit.css('title').first.content =~ /\(New|Reopened\)/ || 0) > 0}"
+    # puts "FALCOR: participants: #{ConfigurationValue.participants.inspect}"
+    # puts "FALCOR: commit assignee: #{get_assignee(commit)[:name]}"
     return (commit.css('title').first.content =~ /\(New|Reopened\)/ || 0) > 0 && 
       ConfigurationValue.participants.include?(get_assignee(commit)[:name])
   end
@@ -63,7 +68,7 @@ class Falcor
   end
 
   def unleash_the_dragon
-    puts "Unleashing the dragon!"
+    Rails.logger.info "FALCOR: Unleashing the dragon!"
     `curl http://scary/play/Falcor`
   end
 
@@ -89,13 +94,13 @@ class Falcor
     case status
       when "reopened"
         puts "You didn't fix it!"
-        `curl http://scary/play/Falcor`
+        unleash_the_dragon
       when "new"
         puts "Unleashing the dragon!"
-        `curl http://scary/play/Falcor`
+        unleash_the_dragon
       when "verified"
         puts "Nice Fix!"
-        #`curl http://scary/play/Falcor`
+        #unleash_the_dragon
       else
         puts "unknown status. nothing to play"
       end
